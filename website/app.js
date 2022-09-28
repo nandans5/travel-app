@@ -4,7 +4,7 @@ const apiKey = '898eb0903c883495ba6d5ef63900fc72&units=imperial'; // check
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+ 1 + '.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Functions
 
