@@ -16,36 +16,36 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
-.holder{
+/* .holder{
 
-}
+} */
 
 .entry{
     background: rgba(59, 74, 107, .4);
 }
 
-#entryHolder{
+/* #entryHolder{
 
-}
+} */
 
 #date{
-
+    color: black;
 }
 
 #temp{
-
+    color: black;
 }
 
 #content{
-
+    color: black;
 }
 
-.headline {
+/* .headline {
 
-}
-.title{
+} */
+/* .title{
 
-}
+} */
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{

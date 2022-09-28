@@ -30,3 +30,15 @@ function listening(){
     console.log('server running'); 
     console.log(`running on localhost: ${port}`);
 };
+
+app.get('/all', getData); 
+function getData(req, res) {
+    res.send(projectData);
+}
+
+app.post('/add', postData);
+function postData(req, res){
+    console.log(req.body)
+    projectData = req.body;
+    res.send(projectData) 
+}
