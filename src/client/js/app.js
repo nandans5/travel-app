@@ -1,6 +1,6 @@
 /* Global Variables */
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?appid=';
-const apiKey = '898eb0903c883495ba6d5ef63900fc72&units=imperial'; // check
+const baseURL = 'http://api.geonames.org/searchJSON?maxRows=1&username=';
+const apiKey = 'nandans5'; // check
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -8,11 +8,12 @@ let newDate = d.getMonth()+ 1 + '.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Functions
 
-const getWeather = async (zipCode)=>{
-    const URL = await fetch(baseURL + apiKey + "&zip="+ zipCode);    
+const getCityDetails = async (cityName)=>{
+    const URL = await fetch(baseURL + apiKey + "&q="+ cityName);    
     try {
-      const newData = await URL.json();    // check variable
-      console.log(newData);
+      const data = await URL.json();    // check variable
+      console.log(data);
+      const newData = data.geonames[0]
       return newData
     } catch(error) {
       console.log('error');
@@ -41,9 +42,9 @@ const updateUI = async () => {
     const req = await fetch('/all');
     try{
         const data = await req.json();
-        document.getElementById('date').innerHTML = newDate;
-        document.getElementById('temp').innerHTML = data.temp;
-        document.getElementById('content').innerHTML = data.content.toString();
+        document.getElementById('country-name').innerHTML = data.countryName;
+        document.getElementById('latitude').innerHTML = data.lat;
+        document.getElementById('longitude').innerHTML = data.lng;
         console.log(data)
     } catch(error) {
         console.log('error');
@@ -54,16 +55,21 @@ const updateUI = async () => {
 
 function generate(e) {
     e.preventDefault()
-    const zipCode = document.getElementById('zip').value;
+    const cityName = document.getElementById('city-name').value;
     const content = document.getElementById('feelings').value; 
-    getWeather(zipCode)
+    getCityDetails(cityName)
     .then(function(newData){
-      const temp = newData.main.temp
-      postData('/add',  {date:newDate, temp:temp, content:content})
+      const lat = newData.lat
+      const lng = newData.lng
+      const countryName = newData.countryName
+      postData('/add',  {countryName:countryName, lat:lat, lng:lng})
       .then(
         updateUI()
       )
     })
 }
 
-document.getElementById('generate').addEventListener('click', generate)
+export { getCityDetails }
+export { postData }
+export { updateUI }
+export { generate }
