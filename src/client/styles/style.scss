@@ -48,12 +48,16 @@ input{
     height: 60px;
     width: 320px;
     // background:#22b2da;
-    background: green;
+    background: lightgreen;
     // color: #f0d43a;
     color: pink;
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
     border: none;
+}
+
+input:hover{
+    background: green;
 }
 
 button{
@@ -66,6 +70,10 @@ button{
     font-family: 'Times New Roman', Times, serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
+}
+
+button:hover{
+    background-color: orangered;
 }
 h1{
     font-size: 45px;
